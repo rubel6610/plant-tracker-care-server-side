@@ -9,7 +9,7 @@ This is the **Express.js backend** for the Plant Care Tracker web application. I
 **Frontend:** [[plant-trackr.surge.sh](https://plant-trackr.surge.sh/)]
 
 
-**backend:** [https://plant-care-tracker-server-alpha.vercel.app]
+**Backend:** [[https://plant-care-tracker-server-alpha.vercel.app/](https://plant-care-tracker-server-alpha.vercel.app/)]
 
 
 ---
