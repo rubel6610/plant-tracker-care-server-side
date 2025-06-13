@@ -19,7 +19,7 @@ const client = new MongoClient(uri, {
 
 async function run() {
     try {
-        await client.connect();
+        // await client.connect();
         const plantCollection = client.db('plant-trackr').collection('plants');
         app.get("/", (req,res)=>{
             res.send("plant trackr server is running")

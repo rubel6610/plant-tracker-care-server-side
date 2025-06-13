@@ -6,7 +6,11 @@ This is the **Express.js backend** for the Plant Care Tracker web application. I
 
 ## 🌐 Live Client Website
 
-**Frontend:** [plant-trackr.surge.sh]
+**Frontend:** [[plant-trackr.surge.sh](https://plant-trackr.surge.sh/)]
+
+
+**Frontend:** [https://plant-care-tracker-server-alpha.vercel.app]
+
 
 ---
 
