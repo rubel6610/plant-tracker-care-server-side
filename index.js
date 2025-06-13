@@ -55,15 +55,26 @@ async function run() {
                 res.status(500).json({ error: "Server error" });
             }
         });
-        app.delete("/plants/:id", async (req, res) => {
+        app.put("/updateplants/:id", async (req, res) => {
             const id = req.params.id;
-            const query = {_id: new ObjectId(id)};
-            const result = await plantCollection.deleteOne(query);
+            const query = { _id: new ObjectId(id) };
+            const updatedData = req.body;
+            const updatedDoc = {
+                $set: updatedData
+                
+            }
+            const result = await plantCollection.updateOne(query, updatedDoc);
             res.send(result)
         })
 
 
-        // Send a ping to confirm a successful connection
+        app.delete("/plants/:id", async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: new ObjectId(id) };
+            const result = await plantCollection.deleteOne(query);
+            res.send(result)
+        });
+
         console.log("connected to mongodb");
     } finally {
         // Ensures that the client will close when you finish/error
