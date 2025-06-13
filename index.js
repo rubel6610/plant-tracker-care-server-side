@@ -9,7 +9,6 @@ app.use(cors());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@plant-trackr.jrovdxz.mongodb.net/?retryWrites=true&w=majority&appName=plant-trackr`;
 
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
     serverApi: {
         version: ServerApiVersion.v1,
@@ -22,6 +21,7 @@ async function run() {
     try {
         await client.connect();
         const plantCollection = client.db('plant-trackr').collection('plants');
+        
         // post api
         app.post('/plants', async (req, res) => {
             const plants = req.body;
@@ -32,12 +32,13 @@ async function run() {
             catch (error) {
                 res.status(500).send({ error: "failed to add plants" })
             }
-
+            // get all the plants from database
         })
         app.get("/plants", async (req, res) => {
             const result = await plantCollection.find().toArray();
             res.send(result)
         })
+        //get all single plants
         app.get("/singleplants/:id", async (req, res) => {
             const id = req.params.id;
             const query = { _id: new ObjectId(id) };
@@ -61,7 +62,7 @@ async function run() {
             const updatedData = req.body;
             const updatedDoc = {
                 $set: updatedData
-                
+
             }
             const result = await plantCollection.updateOne(query, updatedDoc);
             res.send(result)
