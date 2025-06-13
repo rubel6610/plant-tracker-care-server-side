@@ -24,7 +24,8 @@ async function run() {
     try {
         await client.connect();
         const plantCollection = client.db('plant-trackr').collection('plants');
-         app.post('/plants', async (req, res) => {
+        // post api
+        app.post('/plants', async (req, res) => {
             const plants = req.body;
             try {
                 const result = await plantCollection.insertOne(plants);
@@ -35,7 +36,11 @@ async function run() {
             }
 
         })
-       
+        app.get("/plants", async (req, res) => {
+            const result = await plantCollection.find().toArray();
+            res.send(result)
+        })
+
         // Send a ping to confirm a successful connection
         console.log("connected to mongodb");
     } finally {
